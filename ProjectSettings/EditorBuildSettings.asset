@@ -15,14 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Help.unity
     guid: d43b40f22d9acf14ea6f644418d92798
   - enabled: 1
-    path: Assets/Scenes/MainMenu_ChoosePlayer.unity
-    guid: ed0f669900ca6984cb6fdeb9c8fed6d8
-  - enabled: 1
     path: Assets/Scenes/Game_1Player.unity
     guid: db699a6a44c38fd48ae974a07031a795
   - enabled: 1
     path: Assets/Scenes/Game_2Players.unity
-    guid: b421ea62779bdc74c8e8782c17f75873
+    guid: 56f82ef6432b8b649873976bcb3ade59
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 6cfd77f05b7e17f4bb9ecb11a44ba7a9
