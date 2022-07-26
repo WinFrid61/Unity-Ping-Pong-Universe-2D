@@ -3,39 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//script to create DontDestroyOnLoad gameobjects
+//they need to continue playing music in other scenes
 public class MainMenuMusicController : MonoBehaviour
 {
-    public MusicController MusicController;
-    public GameObject MusicPlayer;
-    public GameObject BackGround;
-    public GameObject Trash;
-    void Awake()
-    {
-        DontDestroyOnLoad(MusicPlayer);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        DontDestroyOnLoad(BackGround);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        DontDestroyOnLoad(Trash);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    [SerializeField]
+    private ActiveSceneCheck ActiveSceneCheck;
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void Start()
     {
-        if (scene.name == "Game_1Player" || scene.name == "Game_2Players")
+        for (int i = 0; i < Object.FindObjectsOfType<MainMenuMusicController>().Length; i++)
         {
-            MusicController.audioSource.Stop();
-            Destroy();
-            Destroy();
-            Destroy();
+            if (Object.FindObjectsOfType<MainMenuMusicController>()[i] != this)
+            {
+                if (Object.FindObjectsOfType<MainMenuMusicController>()[i].name == gameObject.name)
+                {
+                    Destroy(gameObject);                }
+            }
         }
-        else
-        {
-            MusicController.audioSource.UnPause();
-        }
-    }
-
-    void Destroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+            DontDestroyOnLoad(gameObject);
     }
 }

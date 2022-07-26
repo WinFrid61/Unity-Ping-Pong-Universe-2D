@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MusicPlayer(M)
+  - Trash(M)
+  - Main Camera(M)
+  - BackGround(M)
   layers:
   - Default
   - TransparentFX

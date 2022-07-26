@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//script which answers for ingame pause menu to call
 public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject UIPauseMenu;
     public MusicController MusicController;
 
+    //if ESC pressed, call menu either resume game if was called
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -24,6 +26,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //method to resume game (unpause music, set inactive pause UI elements and change timescale)
     public void Resume()
     {
         if (!MusicController.audioSource.isPlaying && !MusicController.PausedByUser)
@@ -35,6 +38,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
+    //method to pauseresume game (pause music, set  active pause UI elements and change timescale)
     public void Pause()
     {
         if (MusicController.audioSource.isPlaying)
@@ -46,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
     }
 
+    //method for the button to go back to the main menu
     public void Menu()
     {
         UIPauseMenu.SetActive(false);

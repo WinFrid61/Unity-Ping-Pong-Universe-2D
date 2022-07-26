@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MainMenuBallMovement : MonoBehaviour
 {
-    public float movementSpeed;
+    [SerializeField]
+    private float movementSpeed;
 
     private void Start()
     {
         StartCoroutine(this.StartBall());
     }
 
+    //method to set start position of the ball in main menu
+    //Starting player will never change because there is no score;
+    //However, you can change starting player, which will change start position of the ball to the right side
     void PositionBall(bool isStartingPlayer1)
     {
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -25,6 +29,8 @@ public class MainMenuBallMovement : MonoBehaviour
         }
     }
 
+    //coroutine which calls methods to position ball based on the starting player,
+    //then adding some force to the player's racket after 2 seconds delay
     public IEnumerator StartBall(bool isStartingPlayer1 = true)
     {
         this.PositionBall(isStartingPlayer1);
@@ -39,6 +45,7 @@ public class MainMenuBallMovement : MonoBehaviour
         }
     }
 
+    //method which answers for ball movement
     public void MoveBall(Vector2 direction)
     {
         direction = direction.normalized;

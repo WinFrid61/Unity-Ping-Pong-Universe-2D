@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//hard to say that it's AI, this script simply moves player 2's racket,
+//calculating, if there is a difference between upper pointt of racket (y) and ball (y)
 public class SinglePlayerAI : MonoBehaviour
 {
 

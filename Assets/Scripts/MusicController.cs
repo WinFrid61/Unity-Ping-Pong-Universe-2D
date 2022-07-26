@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//script for all the ingame music (not menu)
 public class MusicController : MonoBehaviour
 {
-    public AudioClip[] clips;
+    [SerializeField]
+    private AudioClip[] clips;
     public AudioSource audioSource;
     private object currentclip;
     private string currentclipName;
@@ -16,14 +18,21 @@ public class MusicController : MonoBehaviour
     public bool PausedByUser = false;
     private string minutes;
     private string seconds;
-    public GameObject SongName;
+    [SerializeField]
+    private GameObject SongName;
 
-
+    //getting volume value from Player Prefs
     void Start()
     {
+        if (PlayerPrefs.HasKey("volumeMusic"))
+        {
+            audioSource.volume = PlayerPrefs.GetFloat("volumeMusic");
+        }
         audioSource.loop = false;
-    }
+        //object MainMenuMusic = Object.Destroy(MainMenuMusicController);
+;    }
 
+    //random pick of the music from array
     public AudioClip GetRandomClip()
     {
         RandomID = Random.Range(0, clips.Length);
@@ -32,6 +41,7 @@ public class MusicController : MonoBehaviour
         return (AudioClip)currentclip;
     }
 
+    //method to calculate and output length of the audio clip
     void SetClipTime()
     {
         minutes = Mathf.Floor((int)audioSource.clip.length / 60).ToString("00");
@@ -40,6 +50,7 @@ public class MusicController : MonoBehaviour
 
     void Update()
     {
+        audioSource.volume = PlayerPrefs.GetFloat("volumeMusic");
         if (!audioSource.isPlaying && !PausedByUser && !PauseMenu.isPaused)
         {
             audioSource.clip = GetRandomClip();
@@ -47,7 +58,7 @@ public class MusicController : MonoBehaviour
             SetClipTime();
         }
 
-
+        //checking for pause option
         if (Input.GetKeyDown(KeyCode.N))
         {
             if (PausedByUser)

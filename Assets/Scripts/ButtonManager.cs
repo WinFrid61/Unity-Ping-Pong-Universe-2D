@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//simple button manager for the whole game
 public class ButtonManager : MonoBehaviour
 {
     public void StartGame_1Player()

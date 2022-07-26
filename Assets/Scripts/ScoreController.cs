@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//script which answers for goaltowin achievement
+//after the game loads gameover scene with result and some models with correct animation
+//also increases player's score if he hits left/right wall;
 public class ScoreController : MonoBehaviour
 {
     internal static int scorePlayer1 = 0;
@@ -11,10 +14,17 @@ public class ScoreController : MonoBehaviour
     internal static int SceneID;
     internal static string scene;
 
-    public GameObject Player1Score;
-    public GameObject Player2Score;
+    [SerializeField]
+    private GameObject GoldenRacketLeft;
+    [SerializeField]
+    private GameObject GoldenRacketRight;
+    [SerializeField]
+    private GameObject Player1Score;
+    [SerializeField]
+    private GameObject Player2Score;
 
-    public int goalToWin;
+    [SerializeField]
+    private int goalToWin;
 
     private void Update()
     {
@@ -45,6 +55,22 @@ public class ScoreController : MonoBehaviour
             scene = "Game_2Players";
             SceneManager.LoadScene("GameOver");
         }
+
+        if (scorePlayer1 > scorePlayer2)
+        {
+            GoldenRacketLeft.SetActive(true);
+            GoldenRacketRight.SetActive(false);
+        }
+        else if (scorePlayer1 < scorePlayer2)
+        {
+            GoldenRacketLeft.SetActive(false);
+            GoldenRacketRight.SetActive(true);
+        }
+        else
+        {
+            GoldenRacketLeft.SetActive(false);
+            GoldenRacketRight.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -57,10 +83,12 @@ public class ScoreController : MonoBehaviour
         UIPlayer2Score.text = scorePlayer2.ToString();
     }
 
+    //method to increase player's 1 score
     public void GoalPlayer1()
     {
         scorePlayer1++;
     }
+    //method to increase player's 2 score
     public void GoalPlayer2()
     {
         scorePlayer2++;
