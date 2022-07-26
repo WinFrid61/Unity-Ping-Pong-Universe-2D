@@ -15,7 +15,7 @@ public class SliderController : MonoBehaviour
     void Start()
     {
         slider.value = 0.2f;
-        oldVolume = slider.value;
+        oldVolume = 0.1f;
         if (PlayerPrefs.HasKey(PrefsName))
         {
             slider.value = PlayerPrefs.GetFloat(PrefsName);
